@@ -1023,34 +1023,42 @@ RESPONSIVE
     display: block;
   }
 
-  .mobile-extra a {
-    display: block;
+  .mobile-extra a,
+  .mobile-extra button {
+    display: flex;
 
-    padding: 14px;
+    align-items: center;
 
-    background: #044895;
+    justify-content: center;
 
-    color: white;
+    gap: 10px;
 
-    border-radius: 12px;
-
-    text-align: center;
-  }
-
-  .mobile-extra .mobile-toggle {
     width: 100%;
 
     padding: 14px;
 
     border: none;
 
+    border-radius: 12px;
+
     background: #044895;
 
     color: white;
 
-    border-radius: 12px;
+    text-decoration: none;
 
-    cursor: pointer;
+    font-weight: 600;
+
+    transition: 0.3s ease;
+  }
+
+  .mobile-extra a:hover,
+  .mobile-extra button:hover {
+    background: #02346b;
+  }
+
+  .mobile-extra i {
+    font-size: 18px;
   }
 
   nav {
