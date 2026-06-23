@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="author" content="Devi Yolanda" />
+
+    <meta
+      name="description"
+      content="Aspiring Data Analyst transitioning from Technical Writing and Security Operations, showcasing dashboard and SQL projects."
+    />
+
+    <meta property="og:title" content="Devi Yolanda | Data Analyst Portfolio" />
+
+    <meta property="og:image" content="assets/preview.png" />
+
+    <title>Devi Yolanda | Aspiring Data Analyst</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="icon" href="assets/favicon.ico" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <div class="circle">DY</div>
+
+        <div>
+          <h3>Devi Yolanda</h3>
+          <p>Aspiring Data Analyst</p>
+        </div>
+      </div>
+
+      <ul>
+        <li><a href="#home">Home</a></li>
+
+        <li><a href="#about">About</a></li>
+
+        <li><a href="#projects">Projects</a></li>
+
+        <li><a href="#skills">Skills</a></li>
+
+        <li><a href="#contact">Contact</a></li>
+
+        <li class="mobile-extra">
+          <a href="assets/resume.pdf" target="_blank"> 📄 Download Resume </a>
+        </li>
+
+        <li class="mobile-extra">
+          <button id="mobile-toggle">🌙 Dark Mode</button>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="assets/resume.pdf" target="_blank" class="resume-btn">
+          Download Resume
+        </a>
+
+        <button id="toggle">🌙</button>
+
+        <button class="hamburger">☰</button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+      <div class="blob"></div>
+
+      <div class="hero-left">
+        <span class="badge"> Aspiring Data Analyst </span>
+
+        <h1>
+          Exploring Data.
+          <br />
+
+          Creating
+          <span>Impact.</span>
+        </h1>
+
+        <p>
+          I'm transitioning from Technical Writing and Security Operations into
+          Data Analytics by building projects, analyzing data, and turning
+          insights into meaningful stories.
+        </p>
+
+        <p class="typing-container">
+          Currently exploring as a
+
+          <span id="typing"></span>
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="primary"> View My Projects </a>
+
+          <a href="#about" class="secondary"> About Me </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="dashboard">
+          <canvas id="salesChart"></canvas>
+        </div>
+
+        <div class="card sales">
+          <p>📈 Sales</p>
+
+          <h3 id="sales">128K</h3>
+        </div>
+
+        <div class="card customer">
+          <p>👥 Customers</p>
+
+          <h3 id="customer">1240</h3>
+        </div>
+
+        <div class="card orders">
+          <p>🛒 Orders</p>
+
+          <h3 id="order">860</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+      <div class="photo">
+        <img src="assets/profile.png" />
+      </div>
+
+      <div class="content">
+        <h5>ABOUT ME</h5>
+
+        <h2>Hello! I'm Devi.</h2>
+
+        <p>I currently work as a Technical Writer in IT Security Operations.</p>
+
+        <p>
+          I am expanding my career path into Data Analytics by developing
+          dashboards, exploring SQL, Python, Power BI, and continuously
+          improving my analytical skills.
+        </p>
+
+        <div class="tags">
+          <div>Technical Writer</div>
+
+          <div>Data Analytics</div>
+
+          <div>Career Transition</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+
+    <section class="journey">
+      <h5>MY TRANSITION JOURNEY</h5>
+
+      <h2>From Technical Writer to Data Analyst</h2>
+
+      <div class="steps">
+        <div class="step">
+          📄
+
+          <h4>Technical Writer</h4>
+        </div>
+
+        <div class="step">
+          📚
+
+          <h4>Learning Data</h4>
+        </div>
+
+        <div class="step">
+          📊
+
+          <h4>Building Projects</h4>
+        </div>
+
+        <div class="step">
+          🎯
+
+          <h4>Aspiring Analyst</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section class="projects" id="projects">
+      <h5>FEATURED PROJECTS</h5>
+
+      <h2>Projects & Case Studies</h2>
+
+      <p>A collection of my data projects. More projects coming soon!</p>
+
+      <div class="project-grid">
+        <!-- PROJECT 1 -->
+
+        <div class="project-card">
+          <span class="number"> 01 </span>
+
+          <h3>Sales Dashboard</h3>
+
+          <small> Google Looker Studio </small>
+
+          <span class="status completed"> Completed </span>
+
+          <div class="preview">
+            <img src="assets/sales-dashboard.png" />
+          </div>
+
+          <p>
+            Interactive sales dashboard to monitor sales performance, trends and
+            business metrics.
+          </p>
+
+          <a
+            href="https://datastudio.google.com/reporting/a33c7e05-8f7b-406e-b36e-1dc7960212cd/page/1TruF"
+            target="_blank"
+          >
+            View Dashboard
+          </a>
+        </div>
+
+        <!-- PROJECT 2 -->
+
+        <div class="project-card">
+          <span class="number"> 02 </span>
+
+          <h3>MySQL Project</h3>
+
+          <small> MySQL </small>
+
+          <span class="status ongoing"> Ongoing </span>
+
+          <div class="preview"></div>
+
+          <p>Ongoing project focusing on data extraction and SQL analysis.</p>
+        </div>
+
+        <!-- PROJECT 3 -->
+
+        <div class="project-card">
+          <span class="number"> 03 </span>
+
+          <h3>Python Case Study</h3>
+
+          <small> Python </small>
+
+          <span class="status planned"> Planned </span>
+
+          <div class="preview"></div>
+
+          <p>Exploratory Data Analysis project using Python.</p>
+        </div>
+
+        <!-- PROJECT 4 -->
+
+        <div class="project-card">
+          <span class="number"> 04 </span>
+
+          <h3>Power BI Dashboard</h3>
+
+          <small> Power BI </small>
+
+          <span class="status planned"> Planned </span>
+
+          <div class="preview"></div>
+
+          <p>Interactive business dashboard project.</p>
+        </div>
+      </div>
+    </section>
+    <!-- SKILLS -->
+
+    <section class="skills" id="skills">
+      <div class="skill-box">
+        <h3>Data Analytics Skills</h3>
+
+        <div class="skill">
+          SQL
+
+          <span> 85% </span>
+        </div>
+
+        <div class="bar">
+          <div class="fill sql" data-width="85%"></div>
+        </div>
+
+        <div class="skill">
+          Data Analysis
+
+          <span> 80% </span>
+        </div>
+
+        <div class="bar">
+          <div class="fill da" data-width="80%"></div>
+        </div>
+
+        <div class="skill">
+          Visualization
+
+          <span> 80% </span>
+        </div>
+
+        <div class="bar">
+          <div class="fill vis" data-width="80%"></div>
+        </div>
+
+        <div class="skill">
+          Python
+
+          <span> 60% </span>
+        </div>
+
+        <div class="bar">
+          <div class="fill py" data-width="60%"></div>
+        </div>
+      </div>
+
+      <div class="skill-box">
+        <h3>Tools & Technologies</h3>
+
+        <div class="tools">
+          <div>SQL</div>
+
+          <div>MySQL</div>
+
+          <div>Python</div>
+
+          <div>Power BI</div>
+
+          <div>Looker Studio</div>
+
+          <div>Excel</div>
+
+          <div>GitHub</div>
+        </div>
+      </div>
+
+      <div class="skill-box">
+        <h3>Core Strengths</h3>
+
+        <ul>
+          <li>Data Cleaning</li>
+
+          <li>Dashboard Design</li>
+
+          <li>KPI Monitoring</li>
+
+          <li>Analytical Thinking</li>
+
+          <li>Documentation</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+
+    <section class="quote">
+      <h2>"Turning data into insights that drive better decisions."</h2>
+    </section>
+
+    <!-- PREMIUM FOOTER -->
+
+    <footer id="contact">
+      <div class="footer-container">
+        <div class="footer-left">
+          <h3>Devi Yolanda</h3>
+
+          <p>Aspiring Data Analyst</p>
+
+          <p>Documentation • Visualization • Analytics</p>
+        </div>
+
+        <div class="footer-center">
+          <h4>Connect</h4>
+
+          <div class="social">
+            <div class="social">
+              <a href="https://github.com/good-pastel" target="_blank">
+                <i class="fa-brands fa-github"></i>
+
+                <span>Github</span>
+              </a>
+
+              <a href="https://linkedin.com/in/deviyool" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
+
+                <span>LinkedIn</span>
+              </a>
+
+              <a href="mailto:datatechnicalwriter@gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+
+                <span>Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-right">
+          <a href="#home"> Back To Top ↑ </a>
+
+          <p>© 2026</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CHART JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- MAIN JS -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
