@@ -96,12 +96,29 @@ SKILL BAR ANIMATION
 
   const bars = document.querySelectorAll(".fill");
 
-  bars.forEach((bar) => {
-    const width = bar.dataset.width;
+  const skillObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
 
-    setTimeout(() => {
-      bar.style.width = width;
-    }, 500);
+          bar.style.width = bar.dataset.width;
+
+          setTimeout(() => {
+            bar.classList.add("animated");
+          }, 300);
+
+          skillObserver.unobserve(bar);
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    },
+  );
+
+  bars.forEach((bar) => {
+    skillObserver.observe(bar);
   });
 
   /* ===================================
