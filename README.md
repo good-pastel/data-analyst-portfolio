@@ -80,9 +80,9 @@ I'm continuously learning new tools and techniques to improve my data analysis c
 
 ## 📬 Connect
 
-- 🌐 Portfolio Website
-- 💼 LinkedIn
-- 🐙 GitHub
+- 🌐 [Portfolio Website](https://good-pastel.github.io/TW-portfolio/)
+- 💼 [LinkedIn](https://www.linkedin.com/in/deviyool)
+- 🐙 [GitHub](https://github.com/good-pastel)
 
 ---
 
