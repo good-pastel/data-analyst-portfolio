@@ -1,302 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /* ===================================
-NAVBAR SHADOW
-=================================== */
+// Portfolio interactions
 
-  window.addEventListener("scroll", () => {
-    const nav = document.querySelector("nav");
+const menuButton = document.querySelector(".hamburger");
+const navMenu = document.querySelector("nav ul");
+menuButton?.addEventListener("click", () => navMenu?.classList.toggle("active"));
+navMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => navMenu.classList.remove("active")));
 
-    if (window.scrollY > 50) {
-      nav.classList.add("active");
-    } else {
-      nav.classList.remove("active");
-    }
+const toggleButtons = [document.getElementById("toggle"), document.getElementById("mobile-toggle")].filter(Boolean);
+const setTheme = (dark) => {
+  document.body.classList.toggle("dark", dark);
+  toggleButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(dark));
+    if (button.id === "toggle") button.textContent = dark ? "☀️" : "🌙";
   });
+  try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); } catch (_) {}
+};
+let darkTheme = false;
+try { darkTheme = localStorage.getItem("portfolio-theme") === "dark"; } catch (_) {}
+setTheme(darkTheme);
+toggleButtons.forEach((button) => button.addEventListener("click", () => setTheme(!document.body.classList.contains("dark"))));
 
-  /* ===================================
-STEP HOVER
-=================================== */
-
-  const cards = document.querySelectorAll(".step");
-
-  cards.forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      card.style.transform = "translateY(-10px)";
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "translateY(0px)";
-    });
-  });
-
-  /* ===================================
-SCROLL REVEAL
-=================================== */
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-    });
-  });
-
-  document.querySelectorAll("section").forEach((section) => {
-    section.classList.add("fade");
-
-    observer.observe(section);
-  });
-
-  /* ===================================
-DARK MODE
-=================================== */
-
-  const toggle = document.getElementById("toggle");
-  const mobileToggle = document.getElementById("mobile-toggle");
-
-  // Ambil tema yang tersimpan
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-  }
-
-  // Fungsi ganti tema
-  function switchTheme() {
-    document.body.classList.toggle("dark");
-
-    localStorage.setItem(
-      "theme",
-
-      document.body.classList.contains("dark") ? "dark" : "light",
-    );
-  }
-
-  // Desktop button
-  if (toggle) {
-    toggle.addEventListener(
-      "click",
-
-      switchTheme,
-    );
-  }
-
-  // Mobile button
-  if (mobileToggle) {
-    mobileToggle.addEventListener(
-      "click",
-
-      switchTheme,
-    );
-  }
-
-  /* ===================================
-SKILL BAR ANIMATION
-=================================== */
-
-  const bars = document.querySelectorAll(".fill");
-
-  const skillObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const bar = entry.target;
-
-          bar.style.width = bar.dataset.width;
-
-          setTimeout(() => {
-            bar.classList.add("animated");
-          }, 300);
-
-          skillObserver.unobserve(bar);
-        }
-      });
-    },
-    {
-      threshold: 0.5,
-    },
-  );
-
-  bars.forEach((bar) => {
-    skillObserver.observe(bar);
-  });
-
-  /* ===================================
-TYPEWRITER
-=================================== */
-
-  const words = [
-    "Aspiring Data Analyst",
-
-    "SQL Enthusiast",
-
-    "Dashboard Builder",
-
-    "Data Storyteller",
-  ];
-
-  const typingElement = document.getElementById("typing");
-
-  let i = 0;
-  let j = 0;
-
-  let currentWord = "";
-
-  let isDeleting = false;
-
-  function type() {
-    if (!typingElement) return;
-
-    currentWord = words[i];
-
-    if (isDeleting) {
-      j--;
-    } else {
-      j++;
-    }
-
-    typingElement.textContent = currentWord.substring(0, j);
-
-    if (!isDeleting && j === currentWord.length) {
-      isDeleting = true;
-
-      setTimeout(type, 1500);
-
-      return;
-    }
-
-    if (isDeleting && j === 0) {
-      isDeleting = false;
-
-      i++;
-
-      i = i % words.length;
-    }
-
-    setTimeout(
-      type,
-
-      isDeleting ? 60 : 120,
-    );
-  }
-
+const phrases = ["Data Analytics", "SQL", "Power BI", "Excel"];
+const typing = document.getElementById("typing");
+if (typing) {
+  let phraseIndex = 0, charIndex = 0, deleting = false;
+  const type = () => {
+    const phrase = phrases[phraseIndex];
+    typing.textContent = phrase.slice(0, charIndex);
+    if (!deleting && charIndex < phrase.length) charIndex++;
+    else if (deleting && charIndex > 0) charIndex--;
+    else { deleting = !deleting; if (!deleting) phraseIndex = (phraseIndex + 1) % phrases.length; }
+    setTimeout(type, deleting ? 65 : 110);
+  };
   type();
+}
 
-  /* ===================================
-CHART JS
-=================================== */
+const skillFills = document.querySelectorAll(".fill[data-width]");
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries, currentObserver) => entries.forEach((entry) => {
+    if (entry.isIntersecting) { entry.target.style.width = entry.target.dataset.width; entry.target.classList.add("animated"); currentObserver.unobserve(entry.target); }
+  }), { threshold: 0.2 });
+  skillFills.forEach((fill) => observer.observe(fill));
+} else skillFills.forEach((fill) => { fill.style.width = fill.dataset.width; fill.classList.add("animated"); });
 
-  const ctx = document.getElementById("salesChart");
-
-  if (ctx) {
-    new Chart(ctx, {
-      type: "line",
-
-      data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-
-        datasets: [
-          {
-            label: "Sales",
-
-            data: [12, 19, 15, 30, 25, 40],
-
-            borderColor: "#0F766E",
-
-            backgroundColor: "rgba(15,118,110,.1)",
-
-            fill: true,
-
-            tension: 0.4,
-
-            borderWidth: 3,
-          },
-        ],
-      },
-
-      options: {
-        responsive: true,
-
-        maintainAspectRatio: false,
-
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-
-        scales: {
-          y: {
-            display: false,
-          },
-
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-        },
-      },
-    });
-  }
-
-  /* ===================================
-KPI COUNTER
-=================================== */
-
-  function animateCounter(id, target, suffix = "") {
-    const element = document.getElementById(id);
-
-    if (!element) return;
-
-    let count = 0;
-
-    const speed = target / 100;
-
-    const interval = setInterval(() => {
-      count += speed;
-
-      if (count >= target) {
-        count = target;
-
-        clearInterval(interval);
-      }
-
-      element.innerHTML = Math.floor(count) + suffix;
-    }, 15);
-  }
-
-  animateCounter(
-    "sales",
-
-    128,
-
-    "K",
-  );
-
-  animateCounter(
-    "customer",
-
-    1240,
-  );
-
-  animateCounter(
-    "order",
-
-    860,
-  );
-
-  /* ==========================
-HAMBURGER MENU
-========================== */
-
-  const hamburger = document.querySelector(".hamburger");
-
-  const menu = document.querySelector("nav ul");
-
-  if (hamburger) {
-    hamburger.addEventListener("click", () => {
-      menu.classList.toggle("active");
-    });
-  }
+const chartCanvas = document.getElementById("salesChart");
+if (chartCanvas && window.Chart) new Chart(chartCanvas, {
+  type: "line",
+  data: { labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"], datasets: [{ label: "Sales", data: [35, 48, 42, 67, 59, 82], borderColor: "#0f4c9c", backgroundColor: "rgba(15, 76, 156, 0.12)", fill: true, tension: 0.4, pointRadius: 3 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: "rgba(148, 163, 184, 0.16)" } }, x: { grid: { display: false } } } }
 });
